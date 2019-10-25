@@ -71,7 +71,7 @@ posible para ayudarle a satisfacer sus necesidades.
   * [Investigación con jugadores de Harry Potter: Wizards Unite](/potter/README.md)
 
 
-## 3. Objetivos de aprendizaje
+## 3. Objetivos de aprendizaje-hola
 
 El objetivo principal de este proyecto es que, entendiendo las necesidades de
 tus usuarios, aprendas a diseñar y construir una interfaz web donde se pueda
