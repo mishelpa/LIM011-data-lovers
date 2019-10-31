@@ -1,7 +1,9 @@
 /* Manejo de data */
 
-// esta es una función de ejemplo
-
-export const example = () => {
-  return 'example';
+export const mostrarListaPokemon = (dataPoke) => {
+  const pokedex = dataPoke.map((data) => ({ num: data.num }));
+  // eslint-disable-next-line no-console
+  return pokedex;
 };
+
+// eslint-disable-next-line no-console
