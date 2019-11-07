@@ -1,9 +1,16 @@
 /* Manejo de data */
 
-export const mostrarListaPokemon = (dataPoke) => {
-  const pokedex = dataPoke.map((data) => ({ num: data.num }));
-  // eslint-disable-next-line no-console
-  return pokedex;
+export const filtrartipopokemon = (datapoke, tipo) => {
+  const nuevoArrayTipo = datapoke.filter((filt) => filt.type.includes(tipo));
+  return (nuevoArrayTipo);
 };
 
-// eslint-disable-next-line no-console
+export const filtrarDebilidadPokemon = (datapoke, debilidad) => {
+  const nuevoArrayDebilidad = datapoke.filter((filt) => filt.weaknesses.includes(debilidad));
+  return (nuevoArrayDebilidad);
+};
+
+export const filtrarKmPokemon = (datapoke, km) => {
+  const nuevoArrayKm = datapoke.filter((filt) => filt.egg === km);
+  return (nuevoArrayKm);
+};
