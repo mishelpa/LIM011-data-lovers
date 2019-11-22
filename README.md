@@ -28,13 +28,8 @@ y de equipo.
 
 ### UX
 
-<<<<<<< HEAD
-- [ ] Diseñar la aplicación pensando y entendiendo al usuario.
-- [ ] Crear prototipos para obtener _feedback_ e iterar.
-=======
 - [X] Diseñar la aplicación pensando y entendiendo al usuario.
 - [X] Crear prototipos para obtener _feedback_ e iterar.
->>>>>>> e9ed7b843730ccd403053f7724274c64d601efbc
 - [X] Aplicar los principios de diseño visual (contraste, alineación, jerarquía).
 - [X] Planear y ejecutar _tests_ de usabilidad.
 
