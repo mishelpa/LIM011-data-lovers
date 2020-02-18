@@ -1,3 +1,4 @@
+
 /* eslint-disable no-console */
 /* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
@@ -9,6 +10,7 @@ const filterOption = document.querySelector('.filter-option');
 const divTop = document.querySelector('.div-top');
 const message = document.querySelector('.message');
 const sortOption = document.querySelector('.sort-option');
+
 
 // OCULTAR ELEMENTOS
 filterOption.classList.add('hide');
@@ -36,10 +38,10 @@ const showData = (arr) => {
         <div class = modal-card> 
           <span class="close" id="close">&times;</span>
           <div class = modal-poke>
-          <img class = "img-poke" src = ${obj.img}>
+            <img class = "img-poke" src = ${obj.img}>
           </div>
           <div class = "modal-body">
-            <h2>${obj.name}</h2><br>
+            <h4>${obj.name}</h4><br>
             <div><h3>${obj.type}</h3>
             <div class = "mb-first">
               <div>
@@ -57,7 +59,7 @@ const showData = (arr) => {
             </div>
             <div class = "mb-second">
             <div>
-              <p><b>${obj.avg_spawns}</b></p>
+              <p><b>${obj.avg_spawns} de 10000</b></p>
               <span># APARICION</span>
             </div> 
             <div>
@@ -101,10 +103,12 @@ const showData = (arr) => {
 };
 
 showData(POKEMON);
+document.querySelector('.paint-canvas-spawn').innerHTML = '';
+document.querySelector('.menu-options').classList.add('hide');
 
 // Crear la barra de navegación
 document.querySelector('#resumen').addEventListener('click', () => {
-  document.querySelector('#bar-nav').classList.toggle('active');
+  document.querySelector('nav').classList.toggle('active');
 });
 
 // POKEBOLA sección donde se muestra los 151 pokemon
@@ -116,6 +120,8 @@ document.querySelector('#menu-pokeball').addEventListener('click', () => {
   sortOption.classList.remove('hide');
   document.querySelector('.menu-option').reset();
   showData(POKEMON);
+  document.querySelector('.paint-canvas-spawn').innerHTML = '';
+  document.querySelector('.menu-options').classList.add('hide');
 });
 
 // Opcion ordenar.
@@ -146,6 +152,8 @@ document.querySelector('#menu-filter').addEventListener('click', () => {
   sortOption.classList.add('hide');
   divTop.classList.add('hide');
   showData(POKEMON);
+  document.querySelector('.paint-canvas-spawn').innerHTML = '';
+  document.querySelector('.menu-options').classList.add('hide');
 });
 
 document.querySelector('#filter-type').addEventListener('change', () => {
@@ -157,10 +165,10 @@ document.querySelector('#filter-type').addEventListener('change', () => {
 
 document.querySelector('#filter-weak').addEventListener('change', () => {
   container.innerHTML = '';
-  const typePoke = document.querySelector('#filter-type').value;
   const weakPoke = document.querySelector('#filter-weak').value;
-  showData(filtData(filtData(POKEMON, 'type', typePoke), 'weaknesses', weakPoke));
-  message.innerHTML = `Hay ${filtData(filtData(POKEMON, 'type', typePoke), 'weaknesses', weakPoke).length} pokemon ${typePoke} con debilidad ${weakPoke} son:`;
+  showData(filtData(POKEMON, 'weaknesses', weakPoke));
+  // message.innerHTML = `Hay ${filtData(filtData(POKEMON, 'type', typePoke), 'weaknesses', weakPoke).length} pokemon ${typePoke} con debilidad ${weakPoke} son:`;
+  message.innerHTML = `Hay ${filtData(POKEMON, 'weaknesses', weakPoke).length} pokemon con debilidad ${weakPoke} son:`;
 });
 
 document.querySelector('#filt-km').addEventListener('change', () => {
@@ -170,6 +178,41 @@ document.querySelector('#filt-km').addEventListener('change', () => {
   message.innerHTML = `Los pokemon con distancia huevo de ${kmPoke} son:`;
 });
 
+const paintCanvas = (pokemon, number) => {
+  const paintCanvasSpawn = document.querySelector('.paint-canvas-spawn');
+  const sectionPie = document.createElement('div');
+  sectionPie.classList.add('section-pie');
+  const sectionCanvas = document.createElement('canvas');
+  sectionPie.appendChild(sectionCanvas);
+  paintCanvasSpawn.appendChild(sectionPie);
+  const ctx = sectionCanvas.getContext('2d');
+  const pokeName = [];
+  const pokeSpawns = [];
+  for (let i = 0; i < number; i += 1) {
+    pokeName.push(pokemon[i].name);
+    pokeSpawns.push(pokemon[i].spawn_chance);
+  }
+  // eslint-disable-next-line no-undef
+  const chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: pokeName,
+      datasets: [{
+        label: 'My First dataset',
+        backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#D62728', '#9467BD', '#8C564B', '#E377C2', '#7F7F7F', '#BCBD22', '#17BECF'],
+        borderColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#D62728', '#9467BD', '#8C564B', '#E377C2', '#7F7F7F', '#BCBD22', '#17BECF'],
+        data: pokeSpawns,
+      }],
+    },
+    options: {
+      legend: {
+        position: 'right',
+        align: 'center',
+      },
+    },
+  });
+  chart.render();
+};
 // TOP 10 seccion donde se muestra los pokemon con mayor aparicion
 document.querySelector('#menu-top').addEventListener('click', () => {
   container.innerHTML = '';
@@ -178,6 +221,10 @@ document.querySelector('#menu-top').addEventListener('click', () => {
   sortOption.classList.add('hide');
   divTop.classList.remove('hide');
   document.querySelector('.menu-option').reset();
+  document.querySelector('.paint-canvas-spawn').innerHTML = '';
+  paintCanvas(topDesc(POKEMON, 10), 10);
+  showData(topDesc(POKEMON, 10));
+  document.querySelector('.menu-options').classList.remove('hide');
 });
 
 document.querySelector('#mas-vistos').addEventListener('click', () => {
@@ -185,6 +232,8 @@ document.querySelector('#mas-vistos').addEventListener('click', () => {
   document.querySelector('.input-top').addEventListener('change', (event) => {
     container.innerHTML = '';
     const valueRadio = event.target.value;
+    document.querySelector('.paint-canvas-spawn').innerHTML = '';
+    paintCanvas(topDesc(POKEMON, 10), valueRadio);
     showData(topDesc(POKEMON, valueRadio));
   });
 });
@@ -194,6 +243,8 @@ document.querySelector('#menos-vistos').addEventListener('click', () => {
   document.querySelector('.input-top').addEventListener('change', (event) => {
     container.innerHTML = '';
     const valueRadio = event.target.value;
+    document.querySelector('.paint-canvas-spawn').innerHTML = '';
+    paintCanvas(top(POKEMON, 10), valueRadio);
     showData(top(POKEMON, valueRadio));
   });
 });

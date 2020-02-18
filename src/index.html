@@ -11,28 +11,24 @@
   </head>
   <body>
     <header>
-        <img class="logo" src="logo.png" alt=""><br><br>
+        <img class="logo" src="logo.png" alt="">
         <input type="text" id="search-poke" placeholder="Busca tu pokemon">
+        <nav>
+          <div id="resumen" class="resumen"><span>&#9776;</span></div>
+            <ul>
+              <li id="menu-pokeball">
+                <label><b>POKEBOLA</b></label>
+              </li>
+              <li id="menu-filter">
+                <label><b>FILTRO</b></label>
+              </li>
+              <li id="menu-top">
+                <label><b>TOP</b></label>
+              </li>
+            </ul>
+       </nav>
     </header>
-
-    <div id="bar-nav">
-      <div id="resumen" class="resumen"><span>&#9776;</span></div><br>
-        <ul>
-          <li id="menu-pokeball">
-            <img src="imagenes/pokeball.png" alt="top10"><br>
-            <label><b>Pokebola</b></label>
-          </li>
-          <li id="menu-filter">
-            <img src="imagenes/filtro.png" alt="top10"><br>
-            <label><b>Filtro</b></label>
-          </li>
-          <li id="menu-top">
-            <img src="imagenes/top10.png" alt="top10"><br>
-            <label><b>Top</b></label>
-          </li>
-        </ul>
-    </div>
-    
+    <!-- <canvas id = "show-chart" width="470" height="250">canvas</canvas> -->
      <div class="sort-option">
         <button  id="AZ"><b>A - Z</b></button>
         <button id="ZA"><b>Z - A</b></button>
@@ -91,27 +87,29 @@
     </div>
     <div class = "message"><b></b></div>
     <div class = "div-top">
-      
+      <section class="paint-canvas-spawn"></section> 
+      <div class="menu-options">
       <input type="radio" name="radio-top" id="mas-vistos"><label for="mas-vistos">Más apariciones</label>
-      <input type="radio" name="radio-top" id="menos-vistos"><label for="menos-vistos">Menos apariciones</label> <br><br>
-      <div class = 'input-top'>
-      <input type="radio" name="radio-num" value = 1 id="r1"><label for="r1">1</label>
-      <input type="radio" name="radio-num" value = 2 id="r2"><label for="r2">2</label>
-      <input type="radio" name="radio-num" value = 3 id="r3"><label for="r3">3</label>
-      <input type="radio" name="radio-num" value = 4 id="r4"><label for="r4">4</label>
-      <input type="radio" name="radio-num" value = 5 id="r5"><label for="r5">5</label>
-      <input type="radio" name="radio-num" value = 6 id="r6"><label for="r6">6</label>
-      <input type="radio" name="radio-num" value = 7 id="r7"><label for="r7">7</label>
-      <input type="radio" name="radio-num" value = 8 id="r8"><label for="r8">8</label>
-      <input type="radio" name="radio-num" value = 9 id="r9"><label for="r9">9</label>
-      <input type="radio" name="radio-num" value = 10 id="r10"><label for="r10">10</label><br>
+      <input type="radio" name="radio-top" id="menos-vistos"><label for="menos-vistos">Menos apariciones</label>
+        <div class = 'input-top'>
+        <input type="radio" name="radio-num" value = 1 id="r1"><label for="r1">1</label>
+        <input type="radio" name="radio-num" value = 2 id="r2"><label for="r2">2</label>
+        <input type="radio" name="radio-num" value = 3 id="r3"><label for="r3">3</label>
+        <input type="radio" name="radio-num" value = 4 id="r4"><label for="r4">4</label>
+        <input type="radio" name="radio-num" value = 5 id="r5"><label for="r5">5</label>
+        <input type="radio" name="radio-num" value = 6 id="r6"><label for="r6">6</label>
+        <input type="radio" name="radio-num" value = 7 id="r7"><label for="r7">7</label>
+        <input type="radio" name="radio-num" value = 8 id="r8"><label for="r8">8</label>
+        <input type="radio" name="radio-num" value = 9 id="r9"><label for="r9">9</label>
+        <input type="radio" name="radio-num" value = 10 id="r10"><label for="r10">10</label><br>
+        </div>
       </div>
     </div>
     <!-- <canvas id="myChart" width="400" height="400"></canvas> -->
-     <section class="container-poke">   
-  </section>
-
-    <footer> karen y mishel production's</footer>
-      <script type="module" src="main.js"></script>
+    <section class="container-poke"></section>
+    <footer> mishel production's</footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type="module" src="main.js"></script>
+    
   </body>
 </html>

@@ -104,7 +104,7 @@ showData(POKEMON);
 
 // Crear la barra de navegación
 document.querySelector('#resumen').addEventListener('click', () => {
-  document.querySelector('#bar-nav').classList.toggle('active');
+  document.querySelector('nav').classList.toggle('active');
 });
 
 // POKEBOLA sección donde se muestra los 151 pokemon
